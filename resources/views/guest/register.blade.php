@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest-layout title="Register">
     <section>
         <div class="w-full max-w-6xl p-5 mx-auto">
             <div class="min-h-screen flex items-center justify-center bg-gray-50">
@@ -11,9 +11,9 @@
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700">Full name</label>
                         <input type="text" name="name" id="name" required value="{{ old('name') }}"
-                            class="mt-1 block w-full px-4 py-2 border @error('email') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="mt-1 block w-full px-4 py-2 border @error('name') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                        @error('email')
+                        @error('name')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -44,9 +44,9 @@
                     <div class="mb-6">
                         <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
                         <input type="password" name="password_confirmation" id="password_confirmation" required
-                            class="mt-1 block w-full px-4 py-2 border @error('password') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            class="mt-1 block w-full px-4 py-2 border @error('password_confirmation') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                        @error('password')
+                        @error('password_confirmation')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>

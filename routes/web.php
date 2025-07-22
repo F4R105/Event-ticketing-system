@@ -13,7 +13,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::view('/user', 'user.home');
-    Route::view('/organizer', 'organizer.home');
-    Route::view('/admin', 'admin.home');
+    Route::view('/user', 'user.home')->middleware('role:user');
+    Route::view('/organizer', 'organizer.home')->middleware('role:organizer');
+    Route::view('/admin', 'admin.home')->middleware('role:admin');
 });

@@ -12,7 +12,7 @@
                 <li>
                     <span>{{ Auth::user()->name }}</span>
                 </li>
-                
+
                 @if ($user === 'guest')
                     <li>
                         <x-nav-link href="/login">Login</x-nav-link>
@@ -23,22 +23,29 @@
                     <li>
                         <x-nav-link href="/login">My tickets</x-nav-link>
                     </li>
-                    <li>
-                        <x-logout-button />
-                    </li>
                 @endif
 
                 @if ($user === 'organizer')
                     <li>
-                        <x-nav-link href="/login">Login</x-nav-link>
+                        <x-nav-link href="/login">My events</x-nav-link>
+                    </li>
+                    <li>
+                        <x-nav-link href="/login">Create event</x-nav-link>
                     </li>
                 @endif
 
                 @if ($user === 'admin')
                     <li>
-                        <x-nav-link href="/login">Login</x-nav-link>
+                        <x-nav-link href="/login">My events</x-nav-link>
+                    </li>
+                    <li>
+                        <x-nav-link href="/login">Create event</x-nav-link>
                     </li>
                 @endif
+
+                <li>
+                    <x-logout-button />
+                </li>
             </ul>
         </div>
     </div>
