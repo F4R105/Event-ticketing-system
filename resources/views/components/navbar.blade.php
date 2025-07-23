@@ -32,7 +32,7 @@
                         <x-nav-link href="/login">My events</x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link href="/login">Create event</x-nav-link>
+                        <x-nav-link href="/event/create">Create event</x-nav-link>
                     </li>
                 @endif
 
@@ -41,7 +41,7 @@
                         <x-nav-link href="/login">My events</x-nav-link>
                     </li>
                     <li>
-                        <x-nav-link href="/login">Create event</x-nav-link>
+                        <x-nav-link href="/event/create">Create event</x-nav-link>
                     </li>
                 @endif
 

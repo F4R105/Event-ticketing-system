@@ -11,6 +11,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::post('/logout', 'logout')->middleware('auth');
+
+    Route::view('/event/create', 'event.create');
 });
 
 Route::middleware('auth')->group(function () {
