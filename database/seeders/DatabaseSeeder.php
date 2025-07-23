@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory(5)->create();
 
-
+        Event::factory(7)->create();
     }
 }

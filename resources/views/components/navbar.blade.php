@@ -1,10 +1,17 @@
 @props(['user'])
 
-<nav class="bg-white shadow-md fixed w-full">
+<nav class="bg-white shadow-md fixed z-50 w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
             <!-- Logo -->
-            <h1 class="text-2xl font-bold text-blue-600">ETS System</h1>
+            <div class="relative">
+                <h1 class="text-2xl font-bold text-blue-600">ETS System</h1>
+                @auth
+                    <span class="absolute -bottom-5 right-0 text-xs text-blue-600 p-1 rounded shadow capitalize">
+                        {{ Auth::user()->role }}
+                    </span>
+                @endauth
+            </div>
 
             <ul class="flex items-center gap-4">
                 @auth
@@ -16,6 +23,9 @@
                         <li>
                             <x-nav-link href="/login">My tickets</x-nav-link>
                         </li>
+                        <li>
+                            <x-nav-link href="#">Create event</x-nav-link>
+                        </li>
                     @endif
 
                     @if ($user === 'organizer')
@@ -24,6 +34,9 @@
                         </li>
                         <li>
                             <x-nav-link href="/login">My events</x-nav-link>
+                        </li>
+                        <li>
+                            <x-nav-link href="/login">My tickets</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="/event/create">Create event</x-nav-link>
@@ -38,19 +51,20 @@
                             <x-nav-link href="/login">My events</x-nav-link>
                         </li>
                         <li>
+                            <x-nav-link href="/login">My tickets</x-nav-link>
+                        </li>
+                        <li>
                             <x-nav-link href="/event/create">Create event</x-nav-link>
                         </li>
                     @endif
 
-                    <div class="flex items-center gap-2 ml-6">
-                        <div class="w-[48px] h-[48px] border border-gray-300 shadow-lg rounded-full group">
-
-                        </div>
-                        <div class="bg-white rounded-md shadow-lg overflow-hidden">
+                    <div class="relative ml-8 w-[48px] h-[48px] border border-gray-300 shadow-lg rounded-full group">
+                        <div
+                            class="absolute -bottom-5 right-[50%] translate-x-[50%] bg-white rounded-md shadow-lg overflow-hidden">
                             {{-- <span class="text-sm">{{ Auth::user()->name }}</span> --}}
                             <form action="/logout" method="post" class="text-center hover:bg-red-200">
                                 @csrf
-                                <button type="submit" class="cursor-pointer text-xs text-red-400 p-1">Logout</button>
+                                <button type="submit" class="cursor-pointer text-xs text-red-400 py-1 px-2">Logout</button>
                             </form>
                         </div>
                     </div>

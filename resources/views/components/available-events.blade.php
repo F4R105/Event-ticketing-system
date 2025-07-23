@@ -9,7 +9,7 @@
 @foreach ($events as $event)
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex gap-4">
 
-        <div class="bg-gray-100 p-4 rounded-lg flex justify-center items-center">
+        <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-center items-center">
             <div class="text-2xl font-semibold">{{ \Carbon\Carbon::parse($event->event_date)->format('d') }}</div>
             <div class="text-sm">{{ \Carbon\Carbon::parse($event->event_date)->format('M') }}</div>
             <div style="opacity: .4">{{ \Carbon\Carbon::parse($event->event_date)->format('Y') }}</div>
@@ -44,10 +44,10 @@
         </div>
 
         <ul class="text-sm text-gray-800 space-y-1">
-            <li><strong>Ticket Price:</strong> TSH {{ number_format($event->ticket_price, 0) }}/=</li>
-            <li><strong>Organizer:</strong> {{ $event->user->business_name }}</li>
-            <li><strong>Remaining Tickets:</strong> {{ $event->available_tickets }}</li>
-            <li><strong>Booking Deadline:</strong>
+            <li class="border border-gray-400 p-2 rounded mb-4"><strong>Ticket Price:</strong> TSH {{ number_format($event->ticket_price, 0) }}/=</li>
+            <li class="px-2"><strong>Organizer:</strong> {{ $event->user->business_name }}</li>
+            <li class="px-2"><strong>Remaining Tickets:</strong> {{ $event->available_tickets }}</li>
+            <li class="px-2"><strong>Booking Deadline:</strong>
                 {{ \Carbon\Carbon::parse($event->booking_deadline_date)->format('d-m-Y') }}</li>
         </ul>
     </div>
