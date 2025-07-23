@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('venue');
-            $table->text('description')->nullable();
+            $table->text('details')->nullable();
             $table->dateTime('event_date');
             $table->integer('ticket_price');
             $table->integer('available_tickets');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -20,7 +21,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.create');
     }
 
     /**
@@ -28,7 +29,25 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'venue' => 'required|string',
+            'details' => 'string',
+            'event_date' => 'required|date|after:now',
+            'ticket_price' => 'required|integer',
+            'available_tickets' => 'required|integer',
+            'booking_start_date' => 'required|date|after:date',
+            'booking_deadline_date' => 'required|date|after:date'
+        ]);
+
+        Event::create($validated);
+
+        switch (Auth::user()->role) {
+            case 'admin':
+                return redirect('/admin');
+            case 'organizer':
+                return redirect('/organizer');
+        }
     }
 
     /**
