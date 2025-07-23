@@ -15,15 +15,16 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'John Orga',
-            'email' => 'organizer@email.com',
+            'email' => 'organizer@ets.test',
             'role' => 'organizer',
             'business_name' => 'JO Events'
         ]);
 
         User::factory()->create([
             'name' => 'John Admo',
-            'email' => 'admin@email.com',
-            'role' => 'admin'
+            'email' => 'admin@ets.test',
+            'role' => 'admin',
+            'business_name' => 'System admin'
         ]);
 
         User::factory(5)->create();

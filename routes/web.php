@@ -12,17 +12,16 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::post('/logout', 'logout')->middleware('auth');
-
-    Route::controller(EventController::class)->group(function () {
-        Route::get('/event/create', 'create');
-        Route::post('/event', 'store');
-    });
-
-    Route::view('/event/create', 'event.create');
 });
 
 Route::middleware('auth')->group(function () {
     Route::view('/user', 'user.home')->middleware('role:user');
     Route::view('/organizer', 'organizer.home')->middleware('role:organizer');
     Route::view('/admin', 'admin.home')->middleware('role:admin');
+
+    Route::controller(EventController::class)->group(function () {
+        Route::get('/event/create', 'create')->middleware(['role:admin,organizer']);
+        Route::post('/event', 'store')->middleware(['role:admin,organizer']);
+        Route::delete('/event/{event}', 'destroy')->middleware(['role:admin,organizer']);
+    });
 });

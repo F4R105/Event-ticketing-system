@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,18 +28,11 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'venue' => 'required|string',
-            'details' => 'string',
-            'event_date' => 'required|date|after:now',
-            'ticket_price' => 'required|integer',
-            'available_tickets' => 'required|integer',
-            'booking_start_date' => 'required|date|after:date',
-            'booking_deadline_date' => 'required|date|after:date'
-        ]);
+        $validated = $request->validated();
+
+        $validated['user_id'] = Auth::user()->id;
 
         Event::create($validated);
 
@@ -79,6 +73,12 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        if (Auth::user()->id !== $event->user_id && Auth::user()->role !== 'admin') {
+            abort(403);
+        }
+
+        $event->delete();
+
+        return redirect()->back();
     }
 }

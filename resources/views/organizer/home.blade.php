@@ -1,4 +1,4 @@
-<x-admin-layout title="Organizer">
+<x-organizer-layout title="Organizer">
     <section>
         <div class="w-full max-w-6xl p-5 mx-auto bg-amber-300">
             <h1>Welcome {{ Auth::user()->business_name }}</h1>
@@ -9,4 +9,4 @@
             <x-available-events />
         </div>
     </section>
-</x-admin-layout>
+</x-organizer-layout>
