@@ -27,11 +27,11 @@
 
     <!-- Date and time Field -->
     <div class="mb-4">
-        <label for="datetime" class="block text-sm font-medium text-gray-700">Date and time</label>
-        <input type="datetime" name="datetime" id="datetime" required value="{{ old('datetime') }}"
-            class="mt-1 block w-full px-4 py-2 border @error('datetime') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <label for="event_date" class="block text-sm font-medium text-gray-700">Date and time</label>
+        <input type="datetime" name="event_date" id="event_date" required value="{{ old('event_date') }}"
+            class="mt-1 block w-full px-4 py-2 border @error('event_date') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        @error('datetime')
+        @error('event_date')
             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
         @enderror
     </div>
@@ -49,22 +49,22 @@
 
     <!-- Price Field -->
     <div class="mb-4">
-        <label for="price" class="block text-sm font-medium text-gray-700">Ticket price</label>
-        <input type="number" name="price" id="price" required value="{{ old('price') }}"
-            class="mt-1 block w-full px-4 py-2 border @error('price') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <label for="ticket_price" class="block text-sm font-medium text-gray-700">Ticket ticket_price</label>
+        <input type="number" name="ticket_price" id="ticket_price" required value="{{ old('ticket_price') }}"
+            class="mt-1 block w-full px-4 py-2 border @error('ticket_price') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        @error('price')
+        @error('ticket_price')
             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
         @enderror
     </div>
 
     <!-- Available tickets Field -->
     <div class="mb-4">
-        <label for="amount" class="block text-sm font-medium text-gray-700">Number of tickets available</label>
-        <input type="number" name="amount" id="amount" required value="{{ old('amount') }}"
-            class="mt-1 block w-full px-4 py-2 border @error('amount') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <label for="available_tickets" class="block text-sm font-medium text-gray-700">Number of tickets available</label>
+        <input type="number" name="available_tickets" id="available_tickets" required value="{{ old('available_tickets') }}"
+            class="mt-1 block w-full px-4 py-2 border @error('available_tickets') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-        @error('amount')
+        @error('available_tickets')
             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
         @enderror
     </div>

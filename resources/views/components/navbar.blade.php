@@ -9,9 +9,11 @@
             </a>
 
             <ul class="flex gap-4">
+                @auth
                 <li>
                     <span>{{ Auth::user()->name }}</span>
                 </li>
+                @endauth
 
                 @if ($user === 'guest')
                     <li>
@@ -43,9 +45,11 @@
                     </li>
                 @endif
 
+                @auth
                 <li>
                     <x-logout-button />
                 </li>
+                @endauth
             </ul>
         </div>
     </div>
