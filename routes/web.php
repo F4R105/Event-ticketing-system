@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 
 Route::view('/', 'guest.home');
-Route::view('/login', 'guest.login');
+Route::view('/login', 'guest.login')->name('login');
 Route::view('/register', 'guest.register');
 
 Route::controller(AuthController::class)->group(function () {

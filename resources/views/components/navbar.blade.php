@@ -10,14 +10,18 @@
 
             <ul class="flex gap-4">
                 @auth
-                <li>
-                    <span>{{ Auth::user()->name }}</span>
-                </li>
+                    <li>
+                        <span>{{ Auth::user()->name }}</span>
+                    </li>
                 @endauth
 
                 @if ($user === 'guest')
                     <li>
-                        <x-nav-link href="/login">Login</x-nav-link>
+                        @if (request()->is('login'))
+                            <x-nav-link href="/register">Register</x-nav-link>
+                        @else
+                            <x-nav-link href="/login">Login</x-nav-link>
+                        @endif
                     </li>
                 @endif
 
@@ -46,9 +50,9 @@
                 @endif
 
                 @auth
-                <li>
-                    <x-logout-button />
-                </li>
+                    <li>
+                        <x-logout-button />
+                    </li>
                 @endauth
             </ul>
         </div>
