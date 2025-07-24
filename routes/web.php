@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EventController;
 
 Route::view('/', 'guest.home');
@@ -24,5 +25,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/event/create', 'create')->middleware(['role:admin,organizer']);
         Route::post('/event', 'store')->middleware(['role:admin,organizer']);
         Route::delete('/event/{event}', 'destroy')->middleware(['role:admin,organizer']);
+    });
+
+    Route::controller(BookingController::class)->group(function () {
+        Route::get('/bookings', 'index');
+        Route::get('/booking/create/{event}', 'create');
+        Route::post('/booking', 'store');
     });
 });

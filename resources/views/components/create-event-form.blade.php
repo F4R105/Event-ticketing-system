@@ -98,7 +98,7 @@
 
     <!-- Create event Button -->
     <div class="mb-4">
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+        <button type="submit" class="cursor-pointer w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
             Create event
         </button>
     </div>

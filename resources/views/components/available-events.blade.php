@@ -1,7 +1,8 @@
 @props(['events'])
 
 @if ($events->isEmpty())
-    <div class="min-h-[50vh] border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex justify-center items-center gap-4">
+    <div
+        class="min-h-[50vh] border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex justify-center items-center gap-4">
         <span class="text-gray-400 text-2xl">There are no events available</span>
     </div>
 @endif
@@ -24,7 +25,7 @@
             <p class="text-gray-700 text-sm mb-3 max-w-xl line-clamp-3">{{ $event->details }}</p>
 
             <div class="flex gap-2 mt-6">
-                <a href="#"
+                <a href="/booking/create/{{ $event->id }}"
                     class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
                     Book Now
                 </a>
@@ -44,7 +45,8 @@
         </div>
 
         <ul class="text-sm text-gray-800 space-y-1">
-            <li class="border border-gray-400 p-2 rounded mb-4"><strong>Ticket Price:</strong> TSH {{ number_format($event->ticket_price, 0) }}/=</li>
+            <li class="border border-gray-400 p-2 rounded mb-4"><strong>Ticket Price:</strong> TSH
+                {{ number_format($event->ticket_price, 0) }}/=</li>
             <li class="px-2"><strong>Organizer:</strong> {{ $event->user->business_name }}</li>
             <li class="px-2"><strong>Remaining Tickets:</strong> {{ $event->available_tickets }}</li>
             <li class="px-2"><strong>Booking Deadline:</strong>
