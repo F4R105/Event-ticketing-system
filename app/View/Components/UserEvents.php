@@ -6,8 +6,9 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
-class AvailableEvents extends Component
+class UserEvents extends Component
 {
     /**
      * Create a new component instance.
@@ -22,7 +23,7 @@ class AvailableEvents extends Component
      */
     public function render(): View|Closure|string
     {
-        $events = Event::all();
-        return view('components.available-events', ['events' => $events]);
+        $events = Event::where('user_id', Auth::user()->id)->get();
+        return view('components.user-events', ['events' => $events]);
     }
 }

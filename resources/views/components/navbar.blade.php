@@ -33,7 +33,7 @@
                             <x-nav-link href="/organizer">Home</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="/login">My events</x-nav-link>
+                            <x-nav-link href="/events">My events</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="/login">My tickets</x-nav-link>
@@ -51,7 +51,7 @@
                             <x-nav-link href="/login">My events</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="/login">My tickets</x-nav-link>
+                            <x-nav-link href="/events">My tickets</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="/event/create">Create event</x-nav-link>
