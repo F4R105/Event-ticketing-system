@@ -11,8 +11,7 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::where('user_id', Auth::user()->id);
-        return view('booking.index', ['bookings' => $bookings]);
+        return view('booking.index');
     }
 
     public function create(Event $event)
