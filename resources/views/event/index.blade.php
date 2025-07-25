@@ -2,6 +2,7 @@
     <x-admin-layout>
         <section id="available_events">
             <div class="w-full max-w-6xl p-5 mx-auto">
+                <x-section-header title="My events" />
                 <x-user-events />
             </div>
         </section>
@@ -12,6 +13,7 @@
     <x-organizer-layout>
         <section id="available_events">
             <div class="w-full max-w-6xl p-5 mx-auto">
+                <x-section-header title="My events" />
                 <x-user-events />
             </div>
         </section>

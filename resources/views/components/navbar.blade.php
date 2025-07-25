@@ -21,7 +21,7 @@
                             <x-nav-link href="/user">Home</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="/login">My tickets</x-nav-link>
+                            <x-nav-link href="/bookings">My tickets</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="#">Create event</x-nav-link>
@@ -48,7 +48,7 @@
                             <x-nav-link href="/admin">Home</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="/login">My events</x-nav-link>
+                            <x-nav-link href="/events">My events</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="/bookings">My tickets</x-nav-link>
@@ -59,9 +59,9 @@
                     @endif
 
                     <div class="relative ml-8 w-[48px] h-[48px] border border-gray-300 shadow-lg rounded-full group">
+                        <img src="{{ asset('images/default_profile.png') }}" alt="Profile">
                         <div
                             class="absolute -bottom-5 right-[50%] translate-x-[50%] bg-white rounded-md shadow-lg overflow-hidden">
-                            {{-- <span class="text-sm">{{ Auth::user()->name }}</span> --}}
                             <form action="/logout" method="post" class="text-center hover:bg-red-200">
                                 @csrf
                                 <button type="submit" class="cursor-pointer text-xs text-red-400 py-1 px-2">Logout</button>

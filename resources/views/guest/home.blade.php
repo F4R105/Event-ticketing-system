@@ -24,8 +24,7 @@
 
             <!-- Image/Illustration -->
             <div class="lg:w-1/2 mt-10 lg:mt-0 text-center">
-                <img src="#" alt="Events illustration"
-                    class="w-full max-w-md mx-auto drop-shadow-lg">
+                <img src="#" alt="Events illustration" class="w-full max-w-md mx-auto drop-shadow-lg">
             </div>
         </div>
 
@@ -36,6 +35,7 @@
 
     <section id="available_events">
         <div class="w-full max-w-6xl p-5 mx-auto">
+            <x-section-header title="Available events" />
             <x-available-events />
         </div>
     </section>

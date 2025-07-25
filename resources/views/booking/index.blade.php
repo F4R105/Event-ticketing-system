@@ -1,22 +1,20 @@
 @if (Auth::user()->role === 'user')
-    <x-guest-layout>
+    <x-user-layout>
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
-                <div class="min-h-[60vh] flex flex-col items-center justify-center bg-gray-50">
-                    <x-user-bookings />
-                </div>
+                <x-section-header title="My tickets" />
+                <x-user-bookings />
             </div>
         </section>
-    </x-guest-layout>
+    </x-user-layout>
 @endif
 
 @if (Auth::user()->role === 'organizer')
     <x-organizer-layout>
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
-                <div class="min-h-[60vh] flex flex-col items-center justify-center bg-gray-50">
-                    <x-user-bookings />
-                </div>
+                <x-section-header title="My tickets" />
+                <x-user-bookings />
             </div>
         </section>
     </x-organizer-layout>
@@ -26,9 +24,8 @@
     <x-admin-layout>
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
-                <div class="min-h-[60vh] flex flex-col items-center justify-center bg-gray-50">
-                    <x-user-bookings />
-                </div>
+                <x-section-header title="My tickets" />
+                <x-user-bookings />
             </div>
         </section>
     </x-admin-layout>

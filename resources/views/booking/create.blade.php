@@ -1,7 +1,7 @@
 @props(['event'])
 
 @if (Auth::user()->role === 'user')
-    <x-guest-layout>
+    <x-user-layout>
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <div class="min-h-[60vh] flex items-center justify-center bg-gray-50">
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </section>
-    </x-guest-layout>
+    </x-user-layout>
 @endif
 
 @if (Auth::user()->role === 'organizer')

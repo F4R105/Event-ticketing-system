@@ -7,6 +7,8 @@
 
                     @include('partials.session-message')
 
+                    <x-section-header title="Register" />
+
                     <!-- Name Field -->
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700">Full name</label>

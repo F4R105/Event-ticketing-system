@@ -4,9 +4,11 @@
             <div class="min-h-screen flex items-center justify-center bg-gray-50">
                 <form method="POST" action="/login" class="w-full max-w-md bg-white p-6 rounded-lg shadow">
                     @csrf
-
+                    
                     @include('partials.session-message')
-
+                    
+                    <x-section-header title="Login" />
+                    
                     <!-- Email Field -->
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>

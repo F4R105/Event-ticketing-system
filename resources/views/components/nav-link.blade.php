@@ -4,11 +4,10 @@
     $isActive = request()->url() === url($href);
 @endphp
 
-<a 
-class="cursor-pointer"
-{{ $attributes->merge([
-    'href' => url($href),
-    'class' => $isActive ? 'text-blue-600 font-semibold' : 'text-gray-600 text-sm hover:text-blue-400'
-]) }}>
+<a
+    {{ $attributes->merge([
+        'href' => url($href),
+        'class' => $isActive ? 'text-blue-600 font-semibold' : 'text-gray-600 text-sm hover:text-blue-400',
+    ]) }}>
     {{ $slot }}
 </a>
