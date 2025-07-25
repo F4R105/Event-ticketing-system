@@ -24,7 +24,7 @@
                             <x-nav-link href="/bookings">My tickets</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="#">Create event</x-nav-link>
+                            <x-nav-link href="/user/request">Create event</x-nav-link>
                         </li>
                     @endif
 
@@ -46,6 +46,12 @@
                     @if ($user === 'admin')
                         <li>
                             <x-nav-link href="/admin">Home</x-nav-link>
+                        </li>
+                        <li>
+                            <x-nav-link href="#">User requests</x-nav-link>
+                        </li>
+                        <li>
+                            <x-nav-link href="#">Organizers</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="/events">My events</x-nav-link>
