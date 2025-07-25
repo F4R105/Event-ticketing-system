@@ -38,4 +38,14 @@ class RequestController extends Controller
         $organizers = User::where('role', 'organizer')->latest()->with('events')->get();
         return view('admin.organizers', ['organizers' => $organizers]);
     }
+
+    public function approve(Request $request)
+    {
+        $validated = $request->validate(['user_id' => 'required|integer|exists:users,id']);
+        $user = User::findOrFail($validated['user_id']);
+        $user->update(['role' => 'organizer']);
+        
+        $organizers = User::where('role', 'organizer')->latest()->with('events')->get();
+        return view('admin.organizers', ['organizers' => $organizers]);
+    }
 }

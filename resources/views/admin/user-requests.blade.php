@@ -25,15 +25,17 @@
                         </p>
 
                         <div class="flex gap-2 mt-6">
-                            <form action="#" method="post" onsubmit="confirm('Are you sure?')">
+                            <form action="/admin/request" method="post" onsubmit="confirm('Are you sure?')">
                                 @csrf
+                                <input type="hidden" name="user_id" value="{{ $request->id }}">
                                 <button type="submit"
-                                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
+                                    class="cursor-pointer inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
                                     Approve
                                 </button>
                             </form>
                             <form action="#" method="post" onsubmit="confirm('Are you sure?')">
                                 @csrf
+                                <input type="hidden" name="user_id" value="{{ $request->id }}">
                                 <button disabled type="submit"
                                     class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition cursor-pointer disabled">
                                     Reject

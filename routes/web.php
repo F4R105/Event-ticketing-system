@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/user/request','request')->middleware('role:user');
         Route::get('/admin/organizers','organizers')->middleware('role:admin');
         Route::get('/admin/requests','requests')->middleware('role:admin');
+        Route::post('/admin/request','approve')->middleware('role:admin');
     });
 
     Route::controller(EventController::class)->group(function () {

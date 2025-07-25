@@ -24,7 +24,7 @@
 
             <!-- Image/Illustration -->
             <div class="lg:w-1/2 mt-10 lg:mt-0 text-center">
-                <img src="{{ asset('/images/hero.png') }}" alt="Events illustration" class="w-full max-w-md mx-auto drop-shadow-lg">
+                <img src="{{ asset('images/hero.png') }}" alt="Events illustration" class="w-full max-w-md mx-auto drop-shadow-lg">
             </div>
         </div>
 
