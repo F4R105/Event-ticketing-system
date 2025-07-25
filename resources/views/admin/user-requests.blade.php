@@ -7,7 +7,7 @@
             @if ($requests->isEmpty())
                 <div
                     class="min-h-[50vh] border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex justify-center items-center gap-4">
-                    <span class="text-gray-400 text-2xl">There are no event organizers</span>
+                    <span class="text-gray-400 text-2xl">There are no requests</span>
                 </div>
             @endif
 
