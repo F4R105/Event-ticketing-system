@@ -1,6 +1,6 @@
 @props(['title' => 'Welcome'])
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth scroll-pt-20">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     @vite(['../../resources/css/app.css', '../../resources/js/app.js'])
 </head>
 
-<body>
+<body class="">
     {{ $slot }}
     <footer class="bg-gray-100 text-gray-600 text-center py-4 border-t">
         <span class="text-sm">&copy; 2025 Event Ticketing System. All rights reserved.</span>

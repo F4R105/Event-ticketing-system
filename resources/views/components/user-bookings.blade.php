@@ -44,7 +44,7 @@
             <li class="border border-gray-400 p-2 rounded mb-4"><strong>Booking Price:</strong> TSH
                 {{ number_format($booking->total_price, 0) }}/=</li>
             <li class="px-2"><strong>Organizer:</strong> {{ $booking->event->user->business_name }}</li>
-            <li class="px-2 text-blue-600"><strong>Tickets booked:</strong> {{ $booking->quantity }}</li>
+            <li class="px-2 text-blue-600"><strong>Ticket/s booked:</strong> {{ $booking->quantity }}</li>
         </ul>
     </div>
 @endforeach

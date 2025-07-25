@@ -42,7 +42,6 @@ class AuthController extends Controller
             return redirect()->back()->with('status', 'Wrong email or password..');
         };
 
-
         switch (Auth::user()->role) {
             case 'admin':
                 return redirect('/admin');
