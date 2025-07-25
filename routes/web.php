@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RequestController;
+use Symfony\Component\Routing\RequestContext;
 
 Route::view('/', 'guest.home');
 Route::view('/login', 'guest.login')->name('login');
@@ -21,8 +22,12 @@ Route::middleware('auth')->group(function () {
     Route::view('/admin', 'admin.home')->middleware('role:admin');
     Route::view('/organizer', 'organizer.home')->middleware('role:organizer');
 
-    Route::get('/user/request', [RequestController::class, 'view'])->middleware('role:user');
-    Route::post('/user/request', [RequestController::class, 'request'])->middleware('role:user');
+    Route::controller(RequestController::class)->group(function () {
+        Route::get('/user/request','view')->middleware('role:user');
+        Route::post('/user/request','request')->middleware('role:user');
+        Route::get('/admin/organizers','organizers')->middleware('role:admin');
+        Route::get('/admin/requests','requests')->middleware('role:admin');
+    });
 
     Route::controller(EventController::class)->group(function () {
         Route::get('/events', 'index')->middleware(['role:admin,organizer']);

@@ -26,4 +26,16 @@ class RequestController extends Controller
 
         return redirect()->back();
     }
+
+    public function requests()
+    {
+        $requests = User::where('role', 'user')->whereNotNull('business_name')->latest()->with('bookings')->get();
+        return view('admin.user-requests', ['requests' => $requests]);
+    }
+
+    public function organizers()
+    {
+        $organizers = User::where('role', 'organizer')->latest()->with('events')->get();
+        return view('admin.organizers', ['organizers' => $organizers]);
+    }
 }

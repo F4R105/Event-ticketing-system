@@ -48,10 +48,10 @@
                             <x-nav-link href="/admin">Home</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="#">User requests</x-nav-link>
+                            <x-nav-link href="/admin/requests">User requests</x-nav-link>
                         </li>
                         <li>
-                            <x-nav-link href="#">Organizers</x-nav-link>
+                            <x-nav-link href="/admin/organizers">Organizers</x-nav-link>
                         </li>
                         <li>
                             <x-nav-link href="/events">My events</x-nav-link>
