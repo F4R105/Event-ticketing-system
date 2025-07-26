@@ -28,8 +28,13 @@ class DatabaseSeeder extends Seeder
             'business_name' => 'System admin'
         ]);
 
+        User::factory()->create([
+            'name' => 'John uzer',
+            'email' => 'user@ets.test',
+        ]);
+
         User::factory(5)->create();
 
-        Event::factory(7)->create();
+        // Event::factory(7)->create();
     }
 }

@@ -23,7 +23,7 @@ class UserEvents extends Component
      */
     public function render(): View|Closure|string
     {
-        $events = Event::where('user_id', Auth::user()->id)->get();
+        $events = Event::where('user_id', Auth::user()->id)->orderBy('event_date','asc')->get();
         return view('components.user-events', ['events' => $events]);
     }
 }

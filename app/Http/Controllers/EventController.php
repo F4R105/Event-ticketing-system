@@ -36,12 +36,7 @@ class EventController extends Controller
 
         Event::create($validated);
 
-        switch (Auth::user()->role) {
-            case 'admin':
-                return redirect('/admin');
-            case 'organizer':
-                return redirect('/organizer');
-        }
+        return redirect('/events');
     }
 
     /**

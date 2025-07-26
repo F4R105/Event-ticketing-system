@@ -1,15 +1,21 @@
 @props(['events'])
 
 @if ($events->isEmpty())
-    <div class="min-h-[50vh] border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex flex-col justify-center items-center gap-4">
+    <div
+        class="min-h-[50vh] border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex flex-col justify-center items-center gap-4">
         <span class="text-gray-400 text-2xl">You have no events yet</span>
         <a href="/event/create" class="bg-blue-600 hover:bg-blue-500 py-2 px-5 rounded text-white">Create event</a>
     </div>
 @endif
 
 @foreach ($events as $event)
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex gap-4">
-
+    <div @class([
+        'bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex gap-4',
+        'opacity-50' => $event->hasExpired(),
+        'border border-orange-300' => $event->bookingHasNotStarted(),
+        'border border-red-300' => $event->bookingHasEnded(),
+        'border border-green-300' => $event->isBookingOpen(),
+    ])>
         <div class="bg-gray-100 p-4 rounded-lg flex flex-col justify-center items-center">
             <div class="text-2xl font-semibold">{{ \Carbon\Carbon::parse($event->event_date)->format('d') }}</div>
             <div class="text-sm">{{ \Carbon\Carbon::parse($event->event_date)->format('M') }}</div>
@@ -25,15 +31,18 @@
             <p class="text-gray-700 text-sm mb-3 max-w-xl line-clamp-3">{{ $event->details }}</p>
 
             <div class="flex gap-2 mt-6">
-                <a href="#"
-                    class="inline-block bg-transparent hover:underline  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
-                    Edit Event
-                </a>
+                <form action="#" method="get" onsubmit="confirm('Are you sure?')">
+                    @csrf
+                    <button disabled type="submit"
+                        class="opacity-[.5] inline-block bg-transparent  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
+                        Edit Event
+                    </button>
+                </form>
                 <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
                     @method('delete')
                     @csrf
-                    <button type="submit"
-                        class="bg-transparent hover:underline  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition cursor-pointer">
+                    <button disabled type="submit"
+                        class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
                         Delete event
                     </button>
                 </form>
@@ -41,7 +50,8 @@
         </div>
 
         <ul class="text-sm text-gray-800 space-y-1">
-            <li class="border border-gray-400 p-2 rounded mb-4"><strong>Ticket Price:</strong> TSH {{ number_format($event->ticket_price, 0) }}/=</li>
+            <li class="border border-gray-400 p-2 rounded mb-4"><strong>Ticket Price:</strong> TSH
+                {{ number_format($event->ticket_price, 0) }}/=</li>
             <li class="px-2"><strong>Organizer:</strong> {{ $event->user->business_name }}</li>
             <li class="px-2"><strong>Remaining Tickets:</strong> {{ $event->available_tickets }}</li>
             <li class="px-2"><strong>Booking Deadline:</strong>

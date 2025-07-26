@@ -22,8 +22,6 @@
                                 You will then be able to create events.</p>
                         </div>
 
-                        <span>Status: {{ $status }}</span>
-
                         <!-- Business name field -->
                         <div>
                             <label for="business_name" class="block text-sm font-medium text-gray-700">Business

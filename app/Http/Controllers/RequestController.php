@@ -11,8 +11,8 @@ class RequestController extends Controller
 
     public function view()
     {
-        $user = User::where('user_id', Auth::id())->whereNull('business_name')->get();
-        $status = $user ? 'sent' : 'not sent';
+        $user = User::where('id', Auth::id())->whereNull('business_name')->first();
+        $status = $user ? 'not sent' : 'sent';
         return view('user.organizer-request', ['status' => $status]);
     }
 

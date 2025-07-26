@@ -25,22 +25,31 @@
             <p class="text-gray-700 text-sm mb-3 max-w-xl line-clamp-3">{{ $event->details }}</p>
 
             <div class="flex gap-2 mt-6">
-                <a href="/booking/create/{{ $event->id }}"
-                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
-                    Book Now
-                </a>
-                <a href="#"
-                    class="inline-block bg-transparent hover:underline  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
-                    Edit Event
-                </a>
-                <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
-                    @method('delete')
+                <form action="/booking/create/{{ $event->id }}" method="get" onsubmit="confirm('Are you sure?')">
                     @csrf
                     <button type="submit"
-                        class="bg-transparent hover:underline  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition cursor-pointer">
-                        Delete event
+                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
+                        Book Now
                     </button>
                 </form>
+
+                @if (Auth::user()->role === 'admin')
+                    <form action="#" method="get" onsubmit="confirm('Are you sure?')">
+                        @csrf
+                        <button disabled type="submit"
+                            class="opacity-[.5] inline-block bg-transparent  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
+                            Edit Event
+                        </button>
+                    </form>
+                    <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
+                        @method('delete')
+                        @csrf
+                        <button disabled type="submit"
+                            class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
+                            Delete event
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
 

@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Event;
+use Carbon\Carbon;
 
 class AvailableEvents extends Component
 {
@@ -22,7 +23,13 @@ class AvailableEvents extends Component
      */
     public function render(): View|Closure|string
     {
-        $events = Event::all();
+        $now = Carbon::now();
+        
+        $events  = Event::where('booking_start_date', '<=', $now)
+            ->where('booking_deadline_date', '>=', $now)
+            ->orderBy('event_date', 'asc')
+            ->get();
+
         return view('components.available-events', ['events' => $events]);
     }
 }
