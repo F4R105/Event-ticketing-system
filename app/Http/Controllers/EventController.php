@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditEventRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return view('event.show', ['event' => $event]);
     }
 
     /**
@@ -52,15 +53,23 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        if (Auth::user()->id !== $event->user_id) {
+            abort(403);
+        }
+
+        return view('event.edit', ['event' => $event]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(EditEventRequest $request, Event $event)
     {
-        //
+        $validated = $request->validated();
+
+        $event->update($validated);
+
+        return redirect('/events');
     }
 
     /**

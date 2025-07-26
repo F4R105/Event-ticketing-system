@@ -23,18 +23,22 @@ Route::middleware('auth')->group(function () {
     Route::view('/organizer', 'organizer.home')->middleware('role:organizer');
 
     Route::controller(RequestController::class)->group(function () {
-        Route::get('/user/request','view')->middleware('role:user');
-        Route::post('/user/request','request')->middleware('role:user');
-        Route::get('/admin/organizers','organizers')->middleware('role:admin');
-        Route::get('/admin/requests','requests')->middleware('role:admin');
-        Route::post('/admin/request','approve')->middleware('role:admin');
+        Route::get('/user/request', 'view')->middleware('role:user');
+        Route::post('/user/request', 'request')->middleware('role:user');
+        Route::get('/admin/organizers', 'organizers')->middleware('role:admin');
+        Route::get('/admin/requests', 'requests')->middleware('role:admin');
+        Route::post('/admin/request', 'approve')->middleware('role:admin');
     });
 
     Route::controller(EventController::class)->group(function () {
-        Route::get('/events', 'index')->middleware(['role:admin,organizer']);
-        Route::get('/event/create', 'create')->middleware(['role:admin,organizer']);
-        Route::post('/event', 'store')->middleware(['role:admin,organizer']);
-        Route::delete('/event/{event}', 'destroy')->middleware(['role:admin,organizer']);
+        Route::middleware(['role:admin,organizer'])->group(function () {
+            Route::get('/events', 'index');
+            Route::get('/event/create', 'create');
+            Route::post('/event', 'store');
+            Route::get('/event/edit/{event}', 'edit');
+            Route::put('/event/update/{event}', 'update');
+            Route::delete('/event/{event}', 'destroy');
+        });
     });
 
     Route::controller(BookingController::class)->group(function () {
@@ -43,3 +47,5 @@ Route::middleware('auth')->group(function () {
         Route::post('/booking', 'store');
     });
 });
+
+Route::get('/event/{event}', [EventController::class, 'show']);

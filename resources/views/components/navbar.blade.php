@@ -7,7 +7,7 @@
             <div class="relative">
                 <h1 class="text-2xl font-bold text-blue-600">ETS System</h1>
                 @auth
-                    <span class="absolute -bottom-5 right-0 text-xs text-blue-600 p-1 rounded shadow capitalize">
+                    <span class="absolute -bottom-6 bg-white right-0 text-xs text-green-600 p-1 rounded shadow capitalize">
                         {{ Auth::user()->role }}
                     </span>
                 @endauth
@@ -64,7 +64,7 @@
                         </li>
                     @endif
 
-                    <div class="relative ml-8 w-[48px] h-[48px] border border-gray-300 shadow-lg rounded-full group">
+                    <div class="relative ml-8 w-[40px] h-[40px] border border-gray-300 shadow-lg rounded-full group">
                         <img src="{{ asset('images/default_profile.png') }}" alt="Profile">
                         <div
                             class="absolute -bottom-5 right-[50%] translate-x-[50%] bg-white rounded-md shadow-lg overflow-hidden">

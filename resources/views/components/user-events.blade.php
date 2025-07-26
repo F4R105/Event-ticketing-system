@@ -23,30 +23,33 @@
         </div>
 
         <div class="flex-1 pr-6">
-            <a href="#" class="flex justify-content-center gap-2 text-blue-700" title="View event">
+            <a href="/event/{{ $event->id }}" class="flex justify-content-center gap-2 text-blue-700"
+                title="View event">
                 <h2 class="text-lg font-bold mb-1 hover:underline line-clamp-1">{{ $event->name }}</h2>
                 <span>&rarr;</span>
             </a>
             <p class="text-sm text-gray-500 mb-2 line-clamp-1">{{ $event->venue }}</p>
             <p class="text-gray-700 text-sm mb-3 max-w-xl line-clamp-3">{{ $event->details }}</p>
 
-            <div class="flex gap-2 mt-6">
-                <form action="#" method="get" onsubmit="confirm('Are you sure?')">
-                    @csrf
-                    <button disabled type="submit"
-                        class="opacity-[.5] inline-block bg-transparent  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
-                        Edit Event
-                    </button>
-                </form>
-                <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
-                    @method('delete')
-                    @csrf
-                    <button disabled type="submit"
-                        class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
-                        Delete event
-                    </button>
-                </form>
-            </div>
+            @if ($event->bookingHasNotStarted())
+                <div class="flex gap-2 mt-6">
+                    <form action="/event/edit/{{ $event->id }}" method="get"">
+                        @csrf
+                        <button type="submit"
+                            class="inline-block bg-yellow-600 hover:bg-orange-500 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
+                            Edit Event
+                        </button>
+                    </form>
+                    <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
+                        @method('delete')
+                        @csrf
+                        <button disabled type="submit"
+                            class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
+                            Delete event
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
 
         <ul class="text-sm text-gray-800 space-y-1">

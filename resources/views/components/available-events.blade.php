@@ -17,7 +17,8 @@
         </div>
 
         <div class="flex-1 pr-6">
-            <a href="#" class="flex justify-content-center gap-2 text-blue-700" title="View event">
+            <a href="/event/{{ $event->id }}" class="flex justify-content-center gap-2 text-blue-700"
+                title="View event">
                 <h2 class="text-lg font-bold mb-1 hover:underline line-clamp-1">{{ $event->name }}</h2>
                 <span>&rarr;</span>
             </a>
@@ -25,7 +26,7 @@
             <p class="text-gray-700 text-sm mb-3 max-w-xl line-clamp-3">{{ $event->details }}</p>
 
             <div class="flex gap-2 mt-6">
-                <form action="/booking/create/{{ $event->id }}" method="get" onsubmit="confirm('Are you sure?')">
+                <form action="/booking/create/{{ $event->id }}" method="get">
                     @csrf
                     <button type="submit"
                         class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-4 py-2 rounded shadow-sm transition">
@@ -33,23 +34,27 @@
                     </button>
                 </form>
 
-                @if (Auth::user()->role === 'admin')
-                    <form action="#" method="get" onsubmit="confirm('Are you sure?')">
-                        @csrf
-                        <button disabled type="submit"
-                            class="opacity-[.5] inline-block bg-transparent  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
-                            Edit Event
-                        </button>
-                    </form>
-                    <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
-                        @method('delete')
-                        @csrf
-                        <button disabled type="submit"
-                            class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
-                            Delete event
-                        </button>
-                    </form>
-                @endif
+                @auth
+                    @if (Auth::user()->role === 'admin')
+                        @if ($event->bookingHasNotStarted())
+                            <form action="/event/edit/{{ $event->id }}" method="get"">
+                                @csrf
+                                <button type="submit"
+                                    class="inline-block hover:underline hover:cursor-pointer bg-transparent  text-gray-600 text-sm px-4 py-2 rounded shadow-sm transition">
+                                    Edit Event
+                                </button>
+                            </form>
+                            <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
+                                @method('delete')
+                                @csrf
+                                <button disabled type="submit"
+                                    class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
+                                    Delete event
+                                </button>
+                            </form>
+                        @endif
+                    @endif
+                @endauth
             </div>
         </div>
 
