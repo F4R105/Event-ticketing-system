@@ -74,7 +74,10 @@
     @auth
         {{ $events->links('vendor.pagination.tailwind') }}
     @else
-        <a href="/login" class="text-gray-500 underline hover:text-blue-600 underline-offset-4">Login to view all events
-            <span>&rarr;</span></a>
+        @if ($events->hasPages())
+            <a href="/login" class="text-gray-500 underline hover:text-blue-600 underline-offset-4">Login to view all
+                events
+                <span>&rarr;</span></a>
+        @endif
     @endauth
 </div>

@@ -1,4 +1,4 @@
-<x-admin-layout title="Admin">
+<x-admin-layout title="Organizers">
     <section id="available_events">
         <div class="w-full max-w-6xl p-5 mx-auto">
             <x-section-header title="Event organizers" />

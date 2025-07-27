@@ -1,6 +1,6 @@
 @auth
     @if (Auth::user()->role === 'user')
-        <x-guest-layout>
+        <x-guest-layout :title="$event->name">
             <section class="py-8 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
                     <article class="max-w-2xl mx-auto bg-gray-50 rounded-lg p-8 sm:p-10 flex flex-col gap-4">
@@ -81,7 +81,7 @@
     @endif
 
     @if (Auth::user()->role === 'organizer')
-        <x-organizer-layout>
+        <x-organizer-layout :title="$event->name">
             <section class="py-8 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
                     <article class="max-w-2xl mx-auto bg-gray-50 rounded-lg p-8 sm:p-10 flex flex-col gap-4">
@@ -162,7 +162,7 @@
     @endif
 
     @if (Auth::user()->role === 'admin')
-        <x-admin-layout>
+        <x-admin-layout :title="$event->name">
             <section class="py-8 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-6xl mx-auto">
                     <article class="max-w-2xl mx-auto bg-gray-50 rounded-lg p-8 sm:p-10 flex flex-col gap-4">
@@ -242,7 +242,7 @@
         </x-admin-layout>
     @endif
 @else
-    <x-guest-layout>
+    <x-guest-layout :title="$event->name">
         <section class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto">
                 <article class="max-w-2xl mx-auto bg-gray-50 rounded-lg p-8 sm:p-10 flex flex-col gap-4">

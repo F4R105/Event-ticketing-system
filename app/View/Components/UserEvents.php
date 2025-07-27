@@ -13,7 +13,7 @@ class UserEvents extends Component
 {
     public string|null $filter;
 
-    public function __construct(string|null $filter = 'initial')
+    public function __construct(string|null $filter)
     {
         $this->filter = $filter;
     }
@@ -31,12 +31,12 @@ class UserEvents extends Component
                 break;
             case 'booking':
                 $events->where('booking_start_date', '<=', $now)
-                    ->where('booking_end_date', '>=', $now);
+                    ->where('booking_deadline_date', '>=', $now);
                 $emptyEventsMessage = "You have no event currently open for booking";
                 break;
             case 'preparation':
-                $events->where('booking_start_date', '<=', $now)
-                    ->where('booking_end_date', '>=', $now);
+                $events->where('booking_deadline_date', '<=', $now)
+                    ->where('event_date', '>=', $now);
                 $emptyEventsMessage = "You have no events requiring preparation";
                 break;
             case 'expired':
@@ -46,7 +46,7 @@ class UserEvents extends Component
         }
 
         return view('components.user-events', [
-            'events' => $events->paginate(10),
+            'events' => $events->where('user_id', Auth::id())->orderBy('event_date','asc')->paginate(10),
             'message' => $emptyEventsMessage
         ]);
     }

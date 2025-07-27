@@ -1,5 +1,5 @@
 @if (Auth::user()->role === 'admin')
-    <x-admin-layout>
+    <x-admin-layout title="Edit event">
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <div class="min-h-screen py-10 flex items-center justify-center bg-gray-50">
@@ -11,7 +11,7 @@
 @endif
 
 @if (Auth::user()->role === 'organizer')
-    <x-organizer-layout>
+    <x-organizer-layout title="Edit event">
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <div class="min-h-screen py-10 flex items-center justify-center bg-gray-50">

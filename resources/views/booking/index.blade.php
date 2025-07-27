@@ -1,5 +1,5 @@
 @if (Auth::user()->role === 'user')
-    <x-user-layout>
+    <x-user-layout title="My tickets">
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <x-section-header title="My tickets" />
@@ -10,7 +10,7 @@
 @endif
 
 @if (Auth::user()->role === 'organizer')
-    <x-organizer-layout>
+    <x-organizer-layout title="My tickets">
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <x-section-header title="My tickets" />
@@ -21,7 +21,7 @@
 @endif
 
 @if (Auth::user()->role === 'admin')
-    <x-admin-layout>
+    <x-admin-layout title="My tickets">
         <section>
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <x-section-header title="My tickets" />
