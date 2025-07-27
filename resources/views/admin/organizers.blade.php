@@ -15,10 +15,9 @@
                 <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex gap-4">
 
                     <div class="flex-1 pr-6">
-                        <a href="#" class="flex justify-content-center gap-2 text-blue-700" title="View event">
-                            <h2 class="text-lg font-bold mb-1 hover:underline line-clamp-1">{{ $organizer->name }}</h2>
-                            <span>&rarr;</span>
-                        </a>
+                        <div class="flex justify-content-center gap-2 text-blue-700" title="View event">
+                            <h2 class="text-lg font-bold mb-1 line-clamp-1">{{ $organizer->name }}</h2>
+                        </div>
                         <p class="text-sm text-gray-500 mb-2 line-clamp-1">{{ $organizer->email }}</p>
                         <p class="text-gray-700 text-sm mb-3 max-w-xl line-clamp-3">
                             <strong>Business name:</strong> {{ $organizer->business_name }}

@@ -13,9 +13,10 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('event.index');
+        $filter = $request->input('filter');
+        return view('event.index', ['filter' => $filter]);
     }
 
     /**

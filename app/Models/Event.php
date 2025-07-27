@@ -26,11 +26,14 @@ class Event extends Model
         return Carbon::now()->lt(Carbon::parse($this->booking_start_date));
     }
 
-    public function bookingHasEnded(): bool
+    public function preparationTime(): bool
     {
-        return Carbon::now()->gt(Carbon::parse($this->booking_end_date));
+        $now = Carbon::now();
+        return $now->between(
+            Carbon::parse($this->booking_deadline_date),
+            Carbon::parse($this->event_date)
+        );
     }
-
 
     public function hasExpired(): bool
     {

@@ -24,11 +24,11 @@ class AvailableEvents extends Component
     public function render(): View|Closure|string
     {
         $now = Carbon::now();
-        
-        $events  = Event::where('booking_start_date', '<=', $now)
+
+        $events = Event::where('booking_start_date', '<=', $now)
             ->where('booking_deadline_date', '>=', $now)
             ->orderBy('event_date', 'asc')
-            ->get();
+            ->paginate(10);
 
         return view('components.available-events', ['events' => $events]);
     }

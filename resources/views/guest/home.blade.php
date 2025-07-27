@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <section class="relative bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white pt-20">
+    <section class="relative bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white -mt-8">
         <div class="max-w-7xl mx-auto px-6 py-16 lg:py-28 flex flex-col lg:flex-row items-center justify-between">
 
             <!-- Text Content -->

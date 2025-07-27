@@ -7,6 +7,7 @@
     </div>
 @endif
 
+
 @foreach ($events as $event)
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-5 flex gap-4">
 
@@ -47,8 +48,8 @@
                             <form action="/event/{{ $event->id }}" method="post" onsubmit="confirm('Are you sure?')">
                                 @method('delete')
                                 @csrf
-                                <button disabled type="submit"
-                                    class="opacity-[.5] bg-transparent  text-red-400 text-sm px-4 py-2 rounded shadow-sm transition">
+                                <button type="submit"
+                                    class="bg-transparent  text-red-400 hover:underline hover:cursor-pointer text-sm px-4 py-2 rounded shadow-sm transition">
                                     Delete event
                                 </button>
                             </form>
@@ -68,3 +69,12 @@
         </ul>
     </div>
 @endforeach
+
+<div class="flex justify-center py-8">
+    @auth
+        {{ $events->links('vendor.pagination.tailwind') }}
+    @else
+        <a href="/login" class="text-gray-500 underline hover:text-blue-600 underline-offset-4">Login to view all events
+            <span>&rarr;</span></a>
+    @endauth
+</div>

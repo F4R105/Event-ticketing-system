@@ -3,7 +3,25 @@
         <section id="available_events">
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <x-section-header title="My events" />
-                <x-user-events />
+                <div class="mb-6 flex gap-4">
+                    <a href="?filter=initial" class="flex gap-2 justify-start items-center hover:underline">
+                        <div class="w-[20px] h-[20px] bg-white"></div>
+                        <p class="text-sm">Booking has not started</p>
+                    </a>
+                    <a href="?filter=booking" class="flex gap-2 justify-start items-center hover:underline">
+                        <div class="w-[20px] h-[20px] bg-green-300"></div>
+                        <p class="text-sm">Booking is open</p>
+                    </a>
+                    <a href="?filter=preparation" class="flex gap-2 justify-start items-center hover:underline">
+                        <div class="w-[20px] h-[20px] bg-red-300"></div>
+                        <p class="text-sm">Booking complete</p>
+                    </a>
+                    <a href="?filter=expired" class="flex gap-2 justify-start items-center hover:underline">
+                        <div class="w-[20px] h-[20px] bg-gray-300"></div>
+                        <p class="text-sm">Past events</p>
+                    </a>
+                </div>
+                <x-user-events :filter="$filter" />
             </div>
         </section>
     </x-admin-layout>
@@ -15,21 +33,22 @@
             <div class="w-full max-w-6xl p-5 mx-auto">
                 <x-section-header title="My events" />
                 <div class="mb-2 flex gap-4">
-                    <div class="flex gap-2 justify-start items-center">
-                        <div class="w-[20px] h-[20px] bg-orange-300"></div>
+                    <a href="" class="flex gap-2 justify-start items-center hover:underline">
+                        <div class="w-[20px] h-[20px] bg-white"></div>
                         <p class="text-sm">Booking has not started</p>
-                    </div>
-                    <div class="flex gap-2 justify-start items-center">
+                    </a>
+                    <a href="" class="flex gap-2 justify-start items-center hover:underline">
                         <div class="w-[20px] h-[20px] bg-green-300"></div>
                         <p class="text-sm">Booking is open</p>
-                    </div>
-                    <div class="flex gap-2 justify-start items-center">
+                    </a>
+                    <a href="" class="flex gap-2 justify-start items-center hover:underline">
                         <div class="w-[20px] h-[20px] bg-red-300"></div>
                         <p class="text-sm">Booking has passed</p>
-                    </div>
+                    </a>
                 </div>
-                <x-user-events />
+                <x-user-events :filter="$filter" />
             </div>
         </section>
     </x-organizer-layout>
 @endif
+

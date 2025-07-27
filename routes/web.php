@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RequestController;
-use Symfony\Component\Routing\RequestContext;
 
 Route::view('/', 'guest.home');
 Route::view('/login', 'guest.login')->name('login');
