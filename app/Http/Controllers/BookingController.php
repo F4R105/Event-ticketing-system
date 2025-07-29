@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EventBooked;
 use App\Models\Booking;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -35,6 +37,8 @@ class BookingController extends Controller
         Booking::create($validated);
 
         $event->decrement('available_tickets', $validated['quantity']);
+
+        Mail::to(Auth::user()->email)->send(new EventBooked($event));
 
         return redirect('/bookings');
     }
