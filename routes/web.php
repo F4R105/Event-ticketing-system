@@ -9,11 +9,15 @@ use App\Http\Controllers\RequestController;
 Route::view('/', 'guest.home');
 Route::view('/login', 'guest.login')->name('login');
 Route::view('/register', 'guest.register');
+Route::view('/forgot-password', 'guest.forgot-password');
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::post('/logout', 'logout')->middleware('auth');
+    Route::post('/forgot-password', 'sendResetPasswordLink');
+    Route::post('/reset-password', 'updatePassword');
+    Route::get('/reset-password/{user}', 'editPassword')->name('password.reset.form')->middleware('signed');
 });
 
 Route::middleware('auth')->group(function () {

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Event ticketing system API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

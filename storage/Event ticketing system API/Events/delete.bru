@@ -1,0 +1,24 @@
+meta {
+  name: delete
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{base_url}}/events/store
+  body: none
+  auth: bearer
+}
+
+body:json {
+  {
+    "name": "",
+    "venue": "",
+    "details": "",
+    "event_date": "",
+    "ticket_price": 50000,
+    "available_tickets": 50,
+    "booking_start_date": "",
+    "booking_deadline_date": ""
+  }
+}

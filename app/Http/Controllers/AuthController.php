@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Mail\ResetPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'string|min:3',
-            'email' => 'email|unique:users,email',
-            'password' => 'string|min:4|confirmed'
-        ]);
 
-        $user = User::create($validated);
+        $user = User::create($request->validated());
 
         Auth::login($user);
 
@@ -31,14 +31,10 @@ class AuthController extends Controller
         }
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string'
-        ]);
 
-        if (!Auth::attempt($validated)) {
+        if (!Auth::attempt($request->validated())) {
             return redirect()->back()->with('status', 'Wrong email or password..');
         };
 
@@ -59,5 +55,36 @@ class AuthController extends Controller
         Session::regenerateToken();
 
         return redirect('/');
+    }
+
+    public function sendResetPasswordLink(Request $request)
+    {
+        $request->validate(
+            ['email' => ['required']]
+        );
+
+        $user = User::where('email', $request->only('email'))->first();
+
+        $link = URL::temporarySignedRoute(
+            'password.reset.form',
+            now()->addMinutes(30),
+            ['user' => $user->id]
+        );
+
+        Mail::to($request->only('email'))->send(
+            new ResetPassword($link)
+        );
+
+        return redirect()->back()->with('status', 'Reset password link is sent to your email');
+    }
+
+    public function editPassword(User $user)
+    {
+        return view('guest.reset-password', ['user' => $user]);
+    }
+
+    public function udpatePassword(Request $request)
+    {
+        return redirect()->back()->with('status', "Password for $request->user_id is updated");
     }
 }

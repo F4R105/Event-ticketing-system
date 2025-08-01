@@ -1,0 +1,28 @@
+meta {
+  name: store
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/events/store
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1|TKeDyt9hWh7rnLSng7w728RB8krEU0qwBiKOQsuV6fe4c6dc
+}
+
+body:json {
+  {
+    "name": "Title for our event",
+    "venue": "Example venue for our event",
+    "details": "This is example detail of the event",
+    "event_date": "2025-10-01T20:00", //2025-05-28T10:00
+    "ticket_price": 50000,
+    "available_tickets": 50,
+    "booking_start_date": "2025-07-01", //2025-05-28
+    "booking_deadline_date": "2025-08-01" //2025-05-28
+  }
+}

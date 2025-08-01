@@ -4,16 +4,15 @@
             <div class="min-h-screen flex items-center justify-center bg-gray-50">
                 <form method="POST" action="/login" class="w-full max-w-md bg-white p-6 rounded-lg shadow">
                     @csrf
-                    
+
                     @include('partials.session-message')
-                    
+
                     <x-section-header title="Login" />
-                    
+
                     <!-- Email Field -->
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                        <input type="email" name="email" id="email" required
-                            value="{{ old('email') }}"
+                        <input type="email" name="email" id="email" required value="{{ old('email') }}"
                             class="mt-1 block w-full px-4 py-2 border @error('email') border-red-500 @else border-gray-300 @enderror rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
 
                         @error('email')
@@ -38,6 +37,13 @@
                             class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
                             Login
                         </button>
+                    </div>
+
+                    <!-- Forgot Password Link -->
+                    <div class="text-center mb-4">
+                        <a href="/forgot-password" class="text-sm text-blue-600 hover:underline">
+                            Forgot your password?
+                        </a>
                     </div>
 
                     <!-- Register Link -->
