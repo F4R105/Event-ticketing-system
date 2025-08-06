@@ -27,6 +27,7 @@ class AvailableEvents extends Component
 
         $events = Event::where('booking_start_date', '<=', $now)
             ->where('booking_deadline_date', '>=', $now)
+            ->where('available_tickets', '>', 0)
             ->orderBy('event_date', 'asc')
             ->paginate(10);
 

@@ -63,13 +63,8 @@ class AuthController extends Controller
             ['email' => ['required']]
         );
 
-        $user = User::where('email', $request->only('email'))->first();
+        $user = User::findOrFail('email', $request->only('email'));
 
-        $link = URL::temporarySignedRoute(
-            'password.reset.form',
-            now()->addMinutes(30),
-            ['user' => $user->id]
-        );
 
         Mail::to($request->only('email'))->send(
             new ResetPassword($link)

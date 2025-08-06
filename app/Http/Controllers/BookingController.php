@@ -26,6 +26,10 @@ class BookingController extends Controller
         $event = Event::findOrFail($request->event_id);
         $availableTickets = $event->available_tickets;
 
+        if($availableTickets < 1){
+            return redirect()->back()->with('error','No available tickets');
+        }
+
         $validated = $request->validate([
             'quantity' => ['required', 'integer', 'min:1', 'max:' . $availableTickets],
             'event_id' => ['required', 'exists:events,id'],
